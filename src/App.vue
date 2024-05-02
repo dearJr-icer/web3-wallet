@@ -1,26 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h3>{{string}}</h3>
+  <button type="success">按钮</button>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup >
+  import {ref} from 'vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  const string = ref('hello web3')
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<styl lang="less">
+  h3{
+    color: red;
+  }
+</styl>
