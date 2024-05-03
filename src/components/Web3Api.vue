@@ -13,12 +13,18 @@
     const address = ref('0x0B9B8Ad5e660cd0e3dfE4CEa4CC21163e61CeD90')
 
     //获取余额
-    const mount = ref(0)
+    const mount = ref(-1)
     web3.eth.getBalance(address.value).then(res=>{
         console.log(res)
         mount.value = res
     })
     console.log(mount)
+
+    //单位转换
+    const weiNum = web3.utils.toWei(3, 'ether');
+    console.log(weiNum)
+    const ethNum = web3.utils.fromWei('1000000000000','ether')
+    console.log(ethNum)
 
 
 
