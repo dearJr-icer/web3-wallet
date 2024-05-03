@@ -11,12 +11,14 @@
     //console.log(account)
 
     const address = ref('0x0B9B8Ad5e660cd0e3dfE4CEa4CC21163e61CeD90')
+    console.log(address.value
+    )
 
-    //获取余额
+    //获取余额----返回结果是wei 可通过单位转换 转换为eth
     const mount = ref(-1)
     web3.eth.getBalance(address.value).then(res=>{
         console.log(res)
-        mount.value = res
+        mount.value = web3.utils.fromWei(res,'ether')
     })
     console.log(mount)
 
