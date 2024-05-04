@@ -31,8 +31,12 @@
 
         //导出keystore
         var web3 = new Web3(Web3.givenProvider || "wss://sepolia.infura.io/ws/v3/81bf523e4ea54e8eb8d9681d909005b1");
+        //方式一
         const keyStore = await web3.eth.accounts.encrypt(`0x${prikey}`,'1111') //参数是  私钥，密码
         console.log(keyStore)
+        //方式二
+        const keyStore2 = await wallet.toV3('1111');
+        console.log(keyStore2)
 
     }
 
