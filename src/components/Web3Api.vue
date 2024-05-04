@@ -20,7 +20,8 @@
     const mount = ref(-1)
     web3.eth.getBalance(address.value).then(res=>{
         console.log(res)
-        mount.value = res>0 ? web3.utils.fromWei(res,'ether') : 0
+        mount.value = res
+        //mount.value = res>0 ? web3.utils.fromWei(res,'ether') : 0
     })
     console.log(mount)
 
@@ -36,7 +37,7 @@
       //预计gas费用
       const gasPrice = await web3.eth.getGasPrice();
       //转账金额
-      const value = web3.utils.toWei('0.005','ether');
+      const value = web3.utils.toWei('0.0001','ether');
       //构建转账参数
       const rawTx = {
         from: address.value,
@@ -56,10 +57,11 @@
       //gas估算
       const gas = await web3.eth.estimateGas(rawTx);
       console.log('gas',gas)
-      rawTx.gas = gas;
+      rawTx.gas = `0x${gas.toString()}`;
+      console.log('rawTx',rawTx)
 
       //生产序列化tx
-      const tx = new Tx(rawTx);
+      let tx = new Tx(rawTx,{'chain':'sepolia'});
       console.log('tx',tx)
 
       tx.sign(pKey);
@@ -91,7 +93,7 @@
      <p>私钥：{{priviteKey}}</p>
      <p>余额：{{mount}}</p>
      <h1>转账</h1>
-     <button @click="send">转账</button>
+     <van-button type="primary" @click="send">转账</van-button>
    </div>
  </template>
  
