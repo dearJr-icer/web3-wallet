@@ -7,7 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    VanButton: typeof import('vant/es')['Button']
+    AccountSys: typeof import('./src/components/AccountSys.vue')['default']
     Web3Api: typeof import('./src/components/Web3Api.vue')['default']
   }
 }
