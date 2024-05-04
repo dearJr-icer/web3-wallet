@@ -48,6 +48,12 @@
         const pKey = result2.getPrivateKey().toString('hex')
         console.log(pKey)
 
+        const prikey2 = Buffer(prikey,'hex')
+        const wallet2 = ethWallet.fromPrivateKey(prikey2)
+        const lowerCaseAddress2 = wallet2.getAddressString()
+        console.log(lowerCaseAddress)
+
+
     }
 
     genMnemonic()
