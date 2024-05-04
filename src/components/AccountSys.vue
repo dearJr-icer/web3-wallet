@@ -1,7 +1,7 @@
 <script setup>
     import {ref} from 'vue'
     import * as bip39 from 'bip39'
-    import {hdkey} from 'ethereumjs-wallet'
+    import ethWallet, {hdkey} from 'ethereumjs-wallet'
     import Web3 from 'web3'
 
 
@@ -34,9 +34,19 @@
         //方式一
         const keyStore = await web3.eth.accounts.encrypt(`0x${prikey}`,'1111') //参数是  私钥，密码
         console.log(keyStore)
-        //方式二
+        //方式二 
         const keyStore2 = await wallet.toV3('1111');
         console.log(keyStore2)
+
+        //通过keystore获取私钥
+        //方式一
+        const result = await web3.eth.accounts.decrypt(keyStore, '1111');
+        console.log(result)
+        //方式二
+        const result2 = await ethWallet.fromV3(keyStore2,'1111')
+        console.log(result2)
+        const pKey = result2.getPrivateKey().toString('hex')
+        console.log(pKey)
 
     }
 
